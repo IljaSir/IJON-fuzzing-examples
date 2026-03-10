@@ -1,0 +1,19 @@
+# 1. Ignore absolutely everything in the repository by default
+*
+
+# 2. Un-ignore directories (Git needs this to traverse the file tree)
+!*/
+
+# 3. Whitelist your source code and project files
+!*.c
+!README.md
+!.gitignore
+
+# 4. Whitelist your seed input directory and the files inside it
+!in/
+!in/*
+
+# 5. Explicitly re-ignore fuzzer output directories, just to be safe
+# (Prevents Git from tracking things like out/default/crashes/README.txt)
+out/
+out_*/
