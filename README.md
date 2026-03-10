@@ -2,6 +2,8 @@
 
 This repository contains a minimal, self-contained Proof of Concept (PoC) demonstrating the power of the **IJON annotation framework** in [AFL++](https://github.com/AFLplusplus/AFLplusplus). 
 
+**Acknowledgments:** This project is a small example of using IJON, *[IJON: Exploring Deep State Spaces via Fuzzing](https://ieeexplore.ieee.org/document/9152719/)* (Aschermann et al., IEEE S&P 2020). You can find the original source code, extended documentation, and further examples at the official [RUB-SysSec/ijon GitHub repository](https://github.com/RUB-SysSec/ijon).
+
 It illustrates a classic fuzzing roadblock—**state space traversal without code branching**—and shows how `IJON_SET` can solve a strict 30+ step sequence in seconds, whereas standard AFL++ would take millions of years to guess it blindly.
 
 ## The Problem: State Collapse
@@ -16,9 +18,6 @@ By adding a single annotation to the source code:
 IJON_SET((x << 8) | y);
 ```
 We tell AFL++ to log the distinct `(x, y)` coordinates into a custom coverage map. Even if the code path is identical, the fuzzer gets a "reward" every time it discovers a new tile, turning an impossible exponential guessing game into a trivial linear sequence.
-
-## Portability
-This PoC includes safe macro fallbacks. It will compile cleanly on standard `gcc`, standard `afl-clang-fast`, and IJON-enabled compilers without throwing undefined reference or redefinition errors.
 
 ---
 
