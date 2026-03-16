@@ -110,7 +110,7 @@ for t in "${targets[@]}"; do
     export TARGET_BIN="${BUILD_DIR}/${target_plain}"
     
     plain_script="${HELPER_DIR}/run_${target_plain}_fuzzing.sh"
-    envsubst < "$TEMPLATE_FILE" > "$plain_script"
+    envsubst '$FUZZER $IN_DIR $OUT_DIR_FULL $TARGET_BIN' < "$TEMPLATE_FILE" > "$plain_script"
     chmod +x "$plain_script"
 
     # Generate Script 2: IJON
@@ -118,7 +118,7 @@ for t in "${targets[@]}"; do
     export TARGET_BIN="${BUILD_DIR}/${target_ijon}"
     
     ijon_script="${HELPER_DIR}/run_${target_ijon}_fuzzing.sh"
-    envsubst < "$TEMPLATE_FILE" > "$ijon_script"
+    envsubst '$FUZZER $IN_DIR $OUT_DIR_FULL $TARGET_BIN' < "$TEMPLATE_FILE" > "$ijon_script"
     chmod +x "$ijon_script"
 
     echo "Done with $t."
